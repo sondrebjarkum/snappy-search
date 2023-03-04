@@ -1,0 +1,44 @@
+.letter-container:hover .letter {
+    animation: animate-letter-f 1s forwards;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.letter-container:hover {
+    width: 150%;
+    /* transform-origin: right; */
+    transform: scale(1.7);
+    transition: all .1s ease;
+}
+
+.letter {
+    pointer-events: none;
+    animation: animate-letter-r 1s forwards;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes animate-letter-f {
+    from {
+        transform: translateX(0) scale(1);
+
+    }
+
+    to {
+        transform: translateX(-20px) scale(.8);
+    }
+}
+
+@keyframes animate-letter-r {
+    from {
+        transform: translateX(-20px) scale(.8);
+    }
+
+    to {
+        transform: translateX(0) scale(1);
+    }
+}
+
+
+.apps-grid-container::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
