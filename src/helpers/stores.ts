@@ -1,6 +1,8 @@
 import { createRoot, createSignal } from "solid-js";
 
-
+/**
+ * @deprecated since Saturday
+ */
 function createLetters() {
     const [sortLetter, setSort] = createSignal<string>("All")
     const setSortLetter = (letter: string) => {

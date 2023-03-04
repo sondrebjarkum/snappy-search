@@ -1,14 +1,13 @@
 import { Stack } from '@hope-ui/solid';
-import { Component, createEffect, createSignal } from 'solid-js';
+import { FiBox, FiLayout, FiUsers } from 'solid-icons/fi';
+import { Component, createSignal } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import Layout from './components/Layouts/Layout';
-import { extractUniqueLetters } from './helpers/extract-letters';
-import stores from './helpers/stores';
-import { apps } from './mock data/apps';
 import { Letter } from './components/SnappySearch/SnappyGrid';
 import SnappySearch from './components/SnappySearch/SnappySearch';
+import { extractUniqueLetters } from './helpers/extract-letters';
+import { apps } from './mock data/apps';
 import { people as peopleMockdata } from './mock data/people';
-import { FiBox, FiUsers } from 'solid-icons/fi'
 import { websites } from './mock data/websites';
 
 
@@ -16,40 +15,28 @@ const App: Component = () => {
   const [applications, setApplications] = createStore([...apps])
   const [people, setPeople] = createStore([...peopleMockdata])
   const [webpage, setWebpage] = createSignal("")
-  // const { sortLetter, setSortLetter } = stores
-  // createEffect(() => {
-  //   sortLetter().toUpperCase() == "ALL"
-  //     ? setApplications([...apps])
-  //     : setApplications(apps.filter(e => e.name.charAt(0).toUpperCase() == sortLetter() && e))
-  // })
-
-  // const handleToggleDrawer = () => {
-  //   setDrawerOpen(prev => !prev)
-  //   drawerOpen() && setSortLetter("All")
-  // }
-  // const handleToggleDrawer = (e: boolean) => e && setSortLetter("All")
 
   return (
     <Layout>
-      <Stack justifyContent="flex-end" w="100%" background={"$neutral5"} p="$2">
-        {/* <SnappySearch
+      <Stack justifyContent="flex-end" w="100%" spacing={"$4"} background={"$neutral5"} p="$2">
+        <SnappySearch
           items={applications}
           letters={extractUniqueLetters<Letter>(apps.map(item => item.name))}
           icon={<FiBox size={24} />}
           align="right"
-        /> */}
-        {/* <SnappySearch
+        />
+        <SnappySearch
           items={people}
           letters={extractUniqueLetters<Letter>(people.map(item => item.name))}
           icon={<FiUsers size={24} />}
           align="right"
           onBlur='keep-open'
           itemAction={(action) => console.log(action)}
-        /> */}
+        />
         <SnappySearch
           items={websites}
           letters={extractUniqueLetters<Letter>(websites.map(item => item.name))}
-          icon={<FiUsers size={24} />}
+          icon={<FiLayout size={24} />}
           align="right"
           itemAction={(action) => setWebpage(action)}
         />
