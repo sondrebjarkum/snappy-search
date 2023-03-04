@@ -1,14 +1,11 @@
-import { Box, Flex, IconButton, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Stack } from '@hope-ui/solid';
-import { children, Component, createEffect, createSignal, For, Show } from 'solid-js';
+import { Stack } from '@hope-ui/solid';
+import { Component, createEffect } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import Layout from './components/Layouts/Layout';
 import { extractUniqueLetters } from './helpers/extract-letters';
 import stores from './helpers/stores';
 import { apps } from './mock data/apps';
-import AppView, { Letter } from './components/Layouts/AppView';
-import { BoxIcon } from './solid-feather-icons';
-import { Transition } from 'solid-transition-group';
-import { hope } from "@hope-ui/solid"
+import { Letter } from './components/Layouts/AppView';
 import SnappySearch from './components/SnappySearch/SnappySearch';
 
 

@@ -1,7 +1,5 @@
-import { createSignal, createMemo, createRoot, batch, } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createRoot, createSignal } from "solid-js";
 
-import { apps } from "../mock data/apps";
 
 function createLetters() {
     const [sortLetter, setSort] = createSignal<string>("All")
