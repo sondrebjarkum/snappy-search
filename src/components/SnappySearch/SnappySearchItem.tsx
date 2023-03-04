@@ -1,16 +1,10 @@
-import { HStack, Box, Flex, Button } from "@hope-ui/solid"
-import { App } from "../../mock data/apps"
+import { Box, Button, HStack } from "@hope-ui/solid"
+import { SearchItem } from "./SnappySearch"
 
-const AppItem = ({ item }: { item: App }) => {
+const SnappySearchItem = ({ item, actionCallback }: { item: SearchItem, actionCallback: (action: any) => void }) => {
 
     return (
         <HStack spacing="$5" alignItems={"center"}>
-            {/* <Box w="40px" h="40px">
-                <Box innerHTML={item.icon}></Box>
-            </Box>
-            <Flex>
-                {item.name}
-            </Flex> */}
             <Button
                 variant={"ghost"}
                 size="md"
@@ -19,7 +13,7 @@ const AppItem = ({ item }: { item: App }) => {
                 justifyContent={"left"}
                 borderWidth="0px"
                 p="$7 $3"
-
+                onClick={() => actionCallback(item.action())}
                 leftIcon={
                     <Box w="35px" h="35px">
                         <Box innerHTML={item.icon}></Box>
@@ -29,4 +23,4 @@ const AppItem = ({ item }: { item: App }) => {
     )
 }
 
-export default AppItem
+export default SnappySearchItem

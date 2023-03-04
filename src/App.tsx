@@ -1,43 +1,62 @@
 import { Stack } from '@hope-ui/solid';
-import { Component, createEffect } from 'solid-js';
+import { Component, createEffect, createSignal } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import Layout from './components/Layouts/Layout';
 import { extractUniqueLetters } from './helpers/extract-letters';
 import stores from './helpers/stores';
 import { apps } from './mock data/apps';
-import { Letter } from './components/Layouts/AppView';
+import { Letter } from './components/SnappySearch/SnappyGrid';
 import SnappySearch from './components/SnappySearch/SnappySearch';
+import { people as peopleMockdata } from './mock data/people';
+import { FiBox, FiUsers } from 'solid-icons/fi'
+import { websites } from './mock data/websites';
 
 
 const App: Component = () => {
-  const letters = extractUniqueLetters<Letter>(apps.map(item => item.name))
-  const { sortLetter, setSortLetter } = stores
   const [applications, setApplications] = createStore([...apps])
-
-  createEffect(() => {
-    sortLetter().toUpperCase() == "ALL"
-      ? setApplications([...apps])
-      : setApplications(apps.filter(e => e.name.charAt(0).toUpperCase() == sortLetter() && e))
-  })
+  const [people, setPeople] = createStore([...peopleMockdata])
+  const [webpage, setWebpage] = createSignal("")
+  // const { sortLetter, setSortLetter } = stores
+  // createEffect(() => {
+  //   sortLetter().toUpperCase() == "ALL"
+  //     ? setApplications([...apps])
+  //     : setApplications(apps.filter(e => e.name.charAt(0).toUpperCase() == sortLetter() && e))
+  // })
 
   // const handleToggleDrawer = () => {
   //   setDrawerOpen(prev => !prev)
   //   drawerOpen() && setSortLetter("All")
   // }
-  const handleToggleDrawer = (e: boolean) => e && setSortLetter("All")
+  // const handleToggleDrawer = (e: boolean) => e && setSortLetter("All")
 
   return (
     <Layout>
-      <Stack justifyContent="flex-end" w="100%" background={"red"}>
-        <SnappySearch
+      <Stack justifyContent="flex-end" w="100%" background={"$neutral5"} p="$2">
+        {/* <SnappySearch
           items={applications}
-          letters={letters}
-          isOpen={(e: boolean) => handleToggleDrawer(e)}
+          letters={extractUniqueLetters<Letter>(apps.map(item => item.name))}
+          icon={<FiBox size={24} />}
+          align="right"
+        /> */}
+        {/* <SnappySearch
+          items={people}
+          letters={extractUniqueLetters<Letter>(people.map(item => item.name))}
+          icon={<FiUsers size={24} />}
+          align="right"
+          onBlur='keep-open'
+          itemAction={(action) => console.log(action)}
+        /> */}
+        <SnappySearch
+          items={websites}
+          letters={extractUniqueLetters<Letter>(websites.map(item => item.name))}
+          icon={<FiUsers size={24} />}
+          align="right"
+          itemAction={(action) => setWebpage(action)}
         />
 
+
       </Stack>
-      <p>jasjs</p>
-      <h1>asdasdasdd</h1>
+      <iframe width={500} height={500} src={webpage()}></iframe>
     </Layout>
   );
 };
